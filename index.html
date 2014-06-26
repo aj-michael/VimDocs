@@ -10,8 +10,10 @@
     </style>
 </head>
 <body>
-    <button type="button" onclick="myFunction()">Try it</button>
     <p>Welcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait. 
+    <button type="button" onclick="myFunction()">Try it</button>
+    
+    
     <script src="jquery.js"></script>
     <script>
         $(document).ready(function() {
@@ -20,6 +22,9 @@
                 event.preventDefault();
                 $("a").addClass("test");
             });
+        });
+        removeLink = function() {
+            $("a").hide("slow");
         });
     </script>
 </body>
