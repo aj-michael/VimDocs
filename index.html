@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>VimDocs</title>
+    <meta charset="utf-8" />
+    <title>VimDocs</title>
 </head>
 <body>
-<a href="http://drive.google.com">Google Docs</a>
-<button type="button" onclick="myFunction()">Try it</button>
-<label id='l1' />
-<script>
-    function myFunction() {
-        document.getElementById("l1").innerHTML = "My First JavaScript Function";
-    }
-</script>
+    <button type="button" onclick="myFunction()">Try it</button>
+    <p>Welcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait. 
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("a").click(function(event) {
+                alert("Thanks for visiting!");
+            });
+        });
+    </script>
 </body>
 </html>
