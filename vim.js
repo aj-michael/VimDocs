@@ -1,4 +1,4 @@
-var ta, mode, modelbl;
+var ta, nta, mode, modelbl;
 var text, line, pos, vpos;
 var clipboard;
 var NORMAL = "Normal",
@@ -6,6 +6,24 @@ var NORMAL = "Normal",
     INSERT = "Insert";
 var wordDelimiters = [" ",".","-","/"];
 var scope = this;
+var revision;
+
+
+function Download() {
+    var textFileBlob = new Blob([ta.value], {type:'text/plan'});
+    var downloadLink = document.createElement("a");
+    downloadLink.download = nta.value;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null) {
+        downloadLink.href = window.webkitURL.createObjectURL(textFileBlob);
+    } else {
+        downloadLink.href = window.URL.createObjectURL(textFileBlob);
+        //downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+    downloadLink.click();
+}
 
 function CharacterAt(i) {
     return ta.value.substring(i,i+1);
@@ -57,6 +75,14 @@ function EndOfFile() {
     ta.value = temp;
 }
 
+function StoreRev() {
+    if (revision.text != ta.value) {
+        revision = {text: ta.value,
+                    prev: revision,
+                    spot: ta.selectionStart};
+    }
+}
+
 function HandleNormalMode(e, keycode) {
     switch (keycode) {
         case 36:    // $
@@ -103,6 +129,14 @@ function HandleNormalMode(e, keycode) {
                 scope['HandleNormalMode'] = original; 
             }
             break;
+        case 117:   // u
+            revision = revision.prev;
+            while (revision.prev != null && revision.text == revision.prev.text) {
+                revision = revision.prev;
+            }
+            ta.value = revision.text;
+            ta.setSelectionRange(revision.spot,revision.spot);
+            break;
         case 118:   // v
             mode = 2;
             modelbl.innerHTML = VISUAL;
@@ -126,16 +160,20 @@ function HandleInsertMode(e, keycode) {
             InsertAtCaret("    ");
             e.preventDefault();
             break;
+        case 17:    //  <ctrl>
+            e.preventDefault();
         case 27:    // <esc>
             mode = 0;
             modelbl.innerHTML = NORMAL;
             e.preventDefault();
+            revision = revision.prev;
             break;
         case 99:    // c
             if (e.ctrlKey) {
                 mode = 0;
                 modelbl.innerHTML = NORMAL;
                 e.preventDefault();
+                revision = revision.prev;
             } else {
                 text[line][pos-1] = keycode;
                 pos++;
@@ -190,15 +228,16 @@ function HandleKeypress(e) {
     var keycode = e.which || e.keyCode;
     switch (mode) {
         case 0:
+            StoreRev();
             e.preventDefault();
             HandleNormalMode(e, keycode);
             break;
         case 1:
+            StoreRev();
             HandleInsertMode(e, keycode);
             break;               
         case 2:
             e.preventDefault();
-            HandleVisualMode(e, keycode);
             break;
     }
 }
@@ -206,7 +245,9 @@ function HandleKeypress(e) {
 window.onload = function() {
     ta = document.getElementById('mainta');
     modelbl = document.getElementById('mode');
+    nta = document.getElementById('nameta');
     ta.value = "";
+    nta.value = "Untitled.txt";
     modelbl.innerHTML = NORMAL;
     mode = 0;
     text = [];
@@ -215,4 +256,7 @@ window.onload = function() {
     text[line] = [];
     ta.onkeypress = HandleKeypress;
     ta.focus();
+    revision = {text: null,
+                prev: null,
+                spot: 0};
 };

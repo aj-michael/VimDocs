@@ -16,8 +16,9 @@
         <input type="button" value="New" id="newbtn" />
         <input type="button" value="Open" id="openbtn" />
         <input type="button" value="Save" id="savebtn" />
-        <input type="button" value="Download" id="downloadbtn" />
-        <label for="doc" id="doclabel">Doc: Untitled.txt</label>
+        <input type="button" value="Download" id="downloadbtn" onclick="Download()" />
+        <label id="doclbl">Doc:</label>
+        <textarea cols="30" rows="1" id="nameta" maxlength="30"></textarea> 
         <label id="mode"></label>
         <textarea cols="2" rows="20" id="mainta" spellcheck="false"></textarea>
     </div>

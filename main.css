@@ -24,7 +24,7 @@ body {
        -moz-box-sizing: border-box;
 }
 
-textarea {
+textarea#mainta {
     border: 1px solid #999999;
     width: 100%;
     display: block;
@@ -37,6 +37,15 @@ textarea {
     color: white;
 }
 
+textarea#nameta {
+    font-weight: bold;
+    font-family: Courier;
+    background-color: transparent;
+    border: none;
+    max-height: 22px;
+    vertical-align: middle;
+}
+
 label#mode {
     float: right;
 }
@@ -45,6 +54,11 @@ label#footer {
     margin-left: auto;
     margin-right: auto;
 }   
+
+label#doclbl {
+    font-family: Courier;
+    font-weight: bold;
+}
 
 .topbar {
     display: block;
