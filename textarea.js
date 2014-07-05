@@ -1,15 +1,16 @@
+var ta;
+
 function SetCursorPosition(pos) {
-    var obj = document.getElementById('mainta'),
+    var obj = document.getElementById('mainta');
     range.collapse(true);
     range.moveEnd('character', pos);
     range.moveStart('character', pos);
     range.select();
 }
 
-
 window.onload = function() {
-    var ta = document.getElementById('mainta');
-
+    ta = document.getElementById('mainta');
+    ta.value = "";
     ta.onkeypress = function(e) {
         var keycode = e.which || e.keyCode,
             key;
