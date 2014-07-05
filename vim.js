@@ -7,7 +7,7 @@ var NORMAL = "Normal",
 var wordDelimiters = [" ",".","-","/"];
 var scope = this;
 var revision;
-
+var lastcommand;
 
 function Download() {
     var textFileBlob = new Blob([ta.value], {type:'text/plan'});
@@ -75,18 +75,40 @@ function EndOfFile() {
     ta.value = temp;
 }
 
-function StoreRev() {
+function StoreRev(keycode) {
     if (revision.text != ta.value) {
-        revision = {text: ta.value,
-                    prev: revision,
-                    spot: ta.selectionStart};
+        revision.next = {text: ta.value,
+                         prev: revision,
+                         spot: ta.selectionStart,
+                      keycode: keycode,
+                         next: null};
+        revision = revision.next;
     }
+}
+
+function Trigger(c) {
+
 }
 
 function HandleNormalMode(e, keycode) {
     switch (keycode) {
         case 36:    // $
             EndOfLine();
+            break;
+        case 37:    // <left>
+            pos = ta.selectionStart;
+            ta.setSelectionRange(pos-1,pos-1);
+            break;
+        case 38:    // <up>
+            break;
+        case 39:    // <right>
+            pos = ta.selectionStart;
+            ta.setSelectionRange(pos+1,pos+1);  
+            break;
+        case 40:    // <down>
+            break;
+        case 46:   // .
+            console.log("I tried to trigger" + lastcommand.keycode);
             break;
         case 48:    // 0
             SetCursorPosition(0);
@@ -123,10 +145,19 @@ function HandleNormalMode(e, keycode) {
             InsertAtCaret(clipboard);
             break;
         case 114:   // r
-            var original = scope['HandleNormalMode'];
-            scope['HandleNormalMode'] = function(e, keycode) {
-                ReplaceAtCaret(String.fromCharCode(keycode));    
-                scope['HandleNormalMode'] = original; 
+            if (e.ctrlKey) {
+                if (revision.next != null) {
+                    revision = revision.next;
+                    ta.value = revision.text;
+                    ta.setSelectionRange(revision.spot,revision.spot);
+                }
+                break;
+            } else {
+                var original = scope['HandleNormalMode'];
+                scope['HandleNormalMode'] = function(e, keycode) {
+                    ReplaceAtCaret(String.fromCharCode(keycode));    
+                    scope['HandleNormalMode'] = original; 
+                }
             }
             break;
         case 117:   // u
@@ -225,21 +256,27 @@ function HandleVisualMode(e, keycode) {
 }
 
 function HandleKeypress(e) {
+    var temp = mode;
     var keycode = e.which || e.keyCode;
+    console.log(keycode);
     switch (mode) {
         case 0:
-            StoreRev();
+            StoreRev(keycode);
             e.preventDefault();
             HandleNormalMode(e, keycode);
             break;
         case 1:
-            StoreRev();
+            StoreRev(keycode);
             HandleInsertMode(e, keycode);
             break;               
         case 2:
             e.preventDefault();
+            HandleVisualMode(e, keycode);
             break;
     }
+    if (keycode == 46 || keycode == 99 && e.ctrlKey || keycode == 27) return;
+    lastcommand = {keycode: keycode,
+                      mode: temp}
 }
 
 window.onload = function() {
@@ -258,5 +295,6 @@ window.onload = function() {
     ta.focus();
     revision = {text: null,
                 prev: null,
-                spot: 0};
+                spot: 0,
+                next: null};
 };
