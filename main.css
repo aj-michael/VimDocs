@@ -5,8 +5,20 @@
 
 textarea {
     border: 1px solid #999999;
-    width: 100%;
-    margin-left: 3px;
-    margin-right: 105px;
+    width: 95%;
+    position: absolute;
+    display: block;
+    margin: 2px 3px;
     padding: 5px;
+    font-family: Courier;
+    font-weight: bold;
+}
+
+label#mode {
+    float: right;
+}
+
+.topbar {
+    display: block;
+    width: 95%;
 }

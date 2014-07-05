@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,10 +9,12 @@
 </head>
 <body>
     <p>Walcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait.</p> 
-    <div style="display: block;" id="docformitem" class="formitem">
+    <div class="topbar">
+        <input type="button" value="Open" id="openbtn" />
+        <input type="button" value="Save" id="savebtn" />
         <label for="doc" id="doclabel">Doc: New</label>
-        <input type="button" value="Save" />
-        <textarea cols="2" rows="10" id="mainta"></textarea>
+        <label id="mode"></label>
+        <textarea cols="2" rows="20" id="mainta"></textarea>
     </div>
 
 </body>
