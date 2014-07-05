@@ -5,16 +5,25 @@
     <title>VimDocs</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
     <script src="jquery.js"></script>
-    <script src="textarea.js"></script>
+    <script src="vim.js"></script>
 </head>
 <body>
-    <p>Walcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait.</p> 
+    <div class="header">
+        <div class="heading">VimDocs</div>
+        <p>Welcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait.</p> 
+    </div>
     <div class="topbar">
+        <input type="button" value="New" id="newbtn" />
         <input type="button" value="Open" id="openbtn" />
         <input type="button" value="Save" id="savebtn" />
-        <label for="doc" id="doclabel">Doc: New</label>
+        <input type="button" value="Download" id="downloadbtn" />
+        <label for="doc" id="doclabel">Doc: Untitled.txt</label>
         <label id="mode"></label>
-        <textarea cols="2" rows="20" id="mainta"></textarea>
+        <textarea cols="2" rows="20" id="mainta" spellcheck="false"></textarea>
+    </div>
+    <div class="footer">
+        <br />
+        <div class="centered">VimDocs by Adam Michael, 2014</div>
     </div>
 
 </body>

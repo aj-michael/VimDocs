@@ -1,3 +1,24 @@
+body {
+    background-image:url('back.png');
+}
+
+.header {
+    display: block;
+    width: 100%;
+    max-width: 1000px;  
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading {
+    font-size: 30px;
+    font-family: Georgia;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
 .boxsizingBorder {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -5,20 +26,41 @@
 
 textarea {
     border: 1px solid #999999;
-    width: 95%;
-    position: absolute;
+    width: 100%;
     display: block;
-    margin: 2px 3px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 5px;
     font-family: Courier;
     font-weight: bold;
+    background-color: grey;
+    color: white;
 }
 
 label#mode {
     float: right;
 }
 
+label#footer {
+    margin-left: auto;
+    margin-right: auto;
+}   
+
 .topbar {
     display: block;
-    width: 95%;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.footer {
+    text-align: center;
+    width: 100%;
+}
+
+.centered {
+    width: 275px;
+    margin-left: auto;
+    margin-right: auto;
+}   
