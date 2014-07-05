@@ -20,15 +20,15 @@ function moveIt(count, e) {
     var keycode = e.keyCode || e.which;
     if (keycode == 37 && parseInt(cursor.style.left) >= (0-((count-1)*10))) {
         // left arrow key
-        cursor.style.left = parseInt(cursor.style.left) - 10 + "px";
+        cursor.style.left = parseInt(cursor.style.left) - 12 + "px";
     } else if (keycode == 39 && (parseInt(cursor.style.left) + 10) <= 0) {
         // right arrow key
-        cursor.style.left = parseInt(cursor.style.left) + 10 + "px";
+        cursor.style.left = parseInt(cursor.style.left) + 12 + "px";
     }
 }
 
 window.onload = function() {
+    document.getElementById("setter").value = "";
     cursor = $("cursor");
     cursor.style.left = "0px";
-
 };
