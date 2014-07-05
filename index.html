@@ -3,29 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title>VimDocs</title>
-    <style>
-        a.test {
-            font-weight: bold;
-        }
-    </style>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <script src="jquery.js"></script>
+    <script src="textarea.js"></script>
 </head>
 <body>
-    <p>Welcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait.</p> 
-    <button type="button" onclick="removeLink()">Try it</button>
-    
-    
-    <script src="jquery.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                alert("PSYCH! You're stuck here!");
-                event.preventDefault();
-                $("a").addClass("test");
-            });
-        });
-        function removeLink() {
-            $("a").hide("slow");
-        }
-    </script>
+    <p>Walcome to VimDocs. I haven't actually made it yet. Check back later. In the mean time, consider the competing product, <a href="http://drive.google.com">Google Docs</a>, while you wait.</p> 
+    <div style="display: block;" id="docformitem" class="formitem">
+        <label for="doc" id="doclabel">Doc: New</label>
+        <textarea cols="2" rows="10" id="mainta">
+    </div>
+
 </body>
 </html>
