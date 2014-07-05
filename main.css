@@ -5,9 +5,36 @@
 }
 
 textarea {
-    border: 1px solid #999999;
-    width: 100%;
-    margin-left: 3px;
-    margin-right: 105px;
-    padding: 5px;
+    left: -1000px;
+    position: absolute;
+}
+
+#terminal {
+    margin: 8px;
+    cursor: text;
+    height: 500px;
+    overflow: auto;
+}
+
+#writer {
+    font-family: cursor, courier;
+    font-weight: bold;
+}
+
+#getter {
+    margin: 5px;
+}
+
+.cursor {
+    font-size: 12px;
+    background-color: red;
+    color: red;
+    position: relative;
+    opacity: 0.5;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 99%;
 }
