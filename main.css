@@ -50,9 +50,14 @@ label#mode {
     float: right;
 }
 
-label#footer {
+#footer {    
+    position: fixed;
+    bottom: 0px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    width: 100%;
+    height: 50px;
 }   
 
 label#doclbl {
@@ -77,4 +82,5 @@ label#doclbl {
     width: 275px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }   
