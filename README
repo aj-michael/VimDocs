@@ -1,5 +1,7 @@
-aj-michael.github.io
-====================
+VimDocs
+=======
 
-VimDocs provides an alternative to the standard group coding experience. Instead of maintaining several copies of your group's code, you can now store it in one accessible location and edit it collectively in real time with the comfort of the old school VIM key bindings.
+Hey there. This is a replica of the ever-popular text editor, ViM. Not all commands are supported yet, as I am still in the process of developing it. My goal is to support concurrent access by multiple users on the same document.
+
+The project can be viewed at aj-michael.github.io/VimDocs
 
